@@ -21,7 +21,6 @@ public class HTMLParser {
     public boolean hasPostLinks(String content) {
         Pattern pattern = Pattern.compile(postUrl);
         Boolean hasLink = false;
-        //System.out.println(content);
         if (content != null) {
             Matcher match = pattern.matcher(content);
             hasLink = match.find();
