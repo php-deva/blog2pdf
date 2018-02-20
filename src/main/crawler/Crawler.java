@@ -26,7 +26,6 @@ public class Crawler {
         while(parser.hasPostLinks(fileContent) || pageNumber == 0) {
             pageNumber++;
             fileContent = this.download(pageNumber + "", pageNumber + ".html");
-//            System.out.println(fileContent);
         }
     }
 
