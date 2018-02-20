@@ -26,6 +26,7 @@ public class Crawler {
         while(parser.hasPostLinks(fileContent) || pageNumber == 0) {
             pageNumber++;
             fileContent = this.download(pageNumber + "", pageNumber + ".html");
+//            System.out.println(fileContent);
         }
     }
 
@@ -61,14 +62,19 @@ public class Crawler {
         URL url = new URL(urlStr);
         BufferedInputStream bis = new BufferedInputStream(url.openStream());
         FileOutputStream fis = new FileOutputStream(path);
+        /*
         BufferedReader br = new BufferedReader(
                 new InputStreamReader(bis, StandardCharsets.UTF_8));
+                */
         byte[] buffer = new byte[1024];
         String fileContent = null;
+        String buffContent = null;
         int count = 0;
+
         while ((count = bis.read(buffer, 0, 1024)) != -1) {
+            buffContent = new String(buffer);
+            fileContent += buffContent;
             fis.write(buffer, 0, count);
-            fileContent += br.readLine();
         }
         fis.close();
         bis.close();
